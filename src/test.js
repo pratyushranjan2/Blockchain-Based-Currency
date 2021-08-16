@@ -1,7 +1,7 @@
-const Block = require('./block')
+const Blockchain = require('./blockchain/index')
 
-const block = new Block('foo','bar','zoo','tar')
+const bc = new Blockchain()
 
-console.log(block)
-console.log(Block.genesis())
-console.log(Block.mineBlock(Block.genesis(),'foo'))
+for (let i=0;i<10;i++) {
+    console.log(bc.addBlock('foo'+i))
+}
