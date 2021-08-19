@@ -19,7 +19,9 @@ class Wallet {
         return this.keyPair.sign(dataHash)
     }
 
-    createTransaction(recipient, amount, transactionPool) {
+    createTransaction(recipient, amount, transactionPool, blockchain) {
+        this.balance = this.calculateBalance(blockchain)
+        
         if (amount > this.balance) {
             return console.log(`Amount ${amount} exceeds the balance`)
         }
@@ -32,6 +34,37 @@ class Wallet {
             transactionPool.updateOrAddTransactions(transaction)
         }
         return transaction
+    }
+
+    calculateBalance(blockchain) {
+        let balance = this.balance
+        let transactions = []
+        blockchain.chain.forEach((block) => block.data.forEach((transaction) => {
+            transactions.push(transaction)
+        }))
+        let walletInputTs = transactions.filter(transaction => transaction.input.address == this.publicKey)
+        let startTime = 0
+        if (walletInputTs.length > 0) {
+            let recentInputT = walletInputTs.reduce((prev,curr) => prev.input.timestamp > curr.input.timestamp ? prev : curr)
+            startTime = recentInputT.input.timestamp
+            balance = recentInputT.outputs.find((output) => output.address == this.publicKey).amount
+        }
+        transactions.forEach(transaction => {
+            if (transaction.input.timestamp > startTime) {
+                transaction.outputs.find(output => {
+                    if (output.address == this.publicKey) {
+                        balance += output.amount
+                    }
+                })
+            }
+        })
+        return balance
+    }
+
+    static blockchainWallet() {
+        const blockchainWallet = new this()
+        blockchainWallet.address = 'blockchain-wallet'
+        return blockchainWallet
     }
 }
 
