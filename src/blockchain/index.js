@@ -15,8 +15,11 @@ class Blockchain {
         // Because if our constructed chain with the block 
         // is invalid, it means that someone else has already
         // mined that block and added the same to the blockchain
-        this.chain.push(block) 
-        return block
+        if (this.chain[this.chain.length-1] === lastBlock) {
+            this.chain.push(block) 
+            return block
+        }
+        return undefined
     }
 
     isValidChain(chain) {
