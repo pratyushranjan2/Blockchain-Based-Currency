@@ -15,13 +15,16 @@ class Miner {
         validTransactions.push(Transaction.rewardTransaction(this.wallet, Wallet.blockchainWallet()))
         // create a block consisting of valid transactions
         const block = this.blockchain.addBlock(validTransactions)
-        // synchronise the chains in the p2p server
-        this.p2pServer.syncChains()
+        // block is undefined if it was mined by some other miner 
+        // faster than this miner
+        if (block) {
+            // synchronise the chains in the p2p server
+            this.p2pServer.syncChains()
+            // broadcast to al iner to clear their as well
+            this.p2pServer.broadcastClearTransactions()
+        }
         // clear the transaction pool local to this miner
-        this.transactionPool.clear() // Update: Clear only the transactions in the validTransactions
-        // broadcast to al iner to clear their as well
-        this.p2pServer.broadcastClearTransactions()
-
+        this.transactionPool.clear() 
         return block
     }
 }
