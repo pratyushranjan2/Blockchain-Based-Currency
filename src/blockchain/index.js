@@ -8,7 +8,14 @@ class Blockchain {
     addBlock(data) {
         const lastBlock = this.chain[this.chain.length-1]
         const block = Block.mineBlock(lastBlock,data)
-        this.chain.push(block)
+        // Replace this.chain.push
+        // Create a new chain using $block
+        // Compare that chain with the existing chain
+        // Replace chain only if chain is longer and valid
+        // Because if our constructed chain with the block 
+        // is invalid, it means that someone else has already
+        // mined that block and added the same to the blockchain
+        this.chain.push(block) 
         return block
     }
 

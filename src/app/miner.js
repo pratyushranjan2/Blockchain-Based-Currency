@@ -18,7 +18,7 @@ class Miner {
         // synchronise the chains in the p2p server
         this.p2pServer.syncChains()
         // clear the transaction pool local to this miner
-        this.transactionPool.clear()
+        this.transactionPool.clear() // Update: Clear only the transactions in the validTransactions
         // broadcast to al iner to clear their as well
         this.p2pServer.broadcastClearTransactions()
 
