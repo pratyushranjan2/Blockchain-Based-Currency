@@ -204,7 +204,7 @@ Mine the transactions currently in the transaction-pool
 
 ### MAKE A TRANSACTION
 ---
-Makes a new transaction and sends it to the nodes of the blockchain for validation
+Makes a new transaction and adds it to the transaction-pool
 
 * **URL** <br/>
 `/mine-transactions`
