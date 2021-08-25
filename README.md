@@ -226,7 +226,7 @@ Mine the transactions currently in the transaction-pool
 Makes a new transaction and adds it to the transaction-pool
 
 * **URL** <br/>
-`/mine-transactions`
+`/transact`
 
 * **METHOD** <br/>
 `POST`
