@@ -58,6 +58,25 @@ Returns the blockchain
 ]```
 <br/><br/><br/>
 
+### GET BALANCE
+---
+Returns the wallet balance
+
+* **URL** <br/>
+`/balance`
+
+* **METHOD** <br/>
+`GET`
+
+* **Success Response:**
+
+  * **Code:** 200 <br />
+    **Example Content:** ```
+    {
+    "balance": 500
+    }```
+<br/><br/><br/>
+
 ### GET TRANSACTIONS
 ---
 Returns the transactions from the transaction-pool
