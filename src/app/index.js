@@ -49,6 +49,11 @@ app.get('/mine-transactions', (req,res) => {
     
 })
 
+app.get('/balance', (req,res) => {
+    const balance = wallet.calculateBalance(bc)
+    res.json({ balance })
+})
+
 
 
 app.listen(HTTP_PORT, () => {
