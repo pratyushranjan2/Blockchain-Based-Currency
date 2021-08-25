@@ -8,19 +8,19 @@ We also need to pass in the web-socket address of the peers in the node in the f
 
 Terminal-1 <br/>
 ```
-npm run start HTTP_PORT=3000 P2P_PORT=5000
+HTTP_PORT=3000 P2P_PORT=5000 npm run start
 ```
 Now for terminal-2 the terminal-1 acts as a peer. So we need to provide that information to terminal-2.<br/>
 
 Terminal-2 <br/>
 ```
-npm run start HTTP_PORT=3001 P2P_PORT=5001 PEERS=ws://localhost:5000
+HTTP_PORT=3001 P2P_PORT=5001 PEERS=ws://localhost:5000 npm run start
 ```
 For terminal-3 terminal-1 and terminal-2 are the available peers. So we provide that information. <br/>
 
 Terminal-3 <br/>
 ```
-npm run start HTTP_PORT=3002 P2P_PORT=5002 PEERS=ws://localhost:5000,ws://localhost:5001
+HTTP_PORT=3002 P2P_PORT=5002 PEERS=ws://localhost:5000,ws://localhost:5001 npm run start
 ```
 
 In case the websocket address is not local, replace *ws* by *wss* and *localhost* by the peer server's address, followed by the port on which it listens to. Example - <br/>
